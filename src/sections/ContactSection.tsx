@@ -7,19 +7,52 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   toast.success("Message sent! I'll get back to you soon.");
+  //   setFormData({ name: "", email: "", message: "" });
+  // };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success("Message sent! I'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
+    emailjs
+      .send(
+        "service_afilmat",
+        "template_6w2l468",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        "up4Ve52Y-rG6wu0p9",
+      )
+      .then(
+        () => {
+          alert("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          alert("Failed to send message. Try again.");
+          console.error(error);
+        },
+      );
   };
 
   return (
     <SectionWrapper id="contact">
-      <SectionHeading title="Get In Touch" subtitle="Have a project in mind? Let's talk." />
+      <SectionHeading
+        title="Get In Touch"
+        subtitle="Have a project in mind? Let's talk."
+      />
 
       <div className="grid md:grid-cols-2 gap-10 max-w-4xl">
         <motion.form
@@ -41,7 +74,9 @@ const ContactSection = () => {
             type="email"
             placeholder="Your Email"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             required
             className="bg-secondary/50 border-border/50 focus:border-primary/50"
           />
@@ -49,7 +84,9 @@ const ContactSection = () => {
             placeholder="Your Message"
             rows={5}
             value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, message: e.target.value })
+            }
             required
             className="bg-secondary/50 border-border/50 focus:border-primary/50 resize-none"
           />
@@ -71,13 +108,17 @@ const ContactSection = () => {
         >
           <div>
             <p className="text-muted-foreground leading-relaxed">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              I'm always open to discussing new projects, creative ideas, or
+              opportunities to be part of your vision.
             </p>
           </div>
 
           <div>
             <p className="text-sm text-muted-foreground mb-1">Email</p>
-            <a href={`mailto:${personalInfo.email}`} className="text-primary hover:underline font-mono">
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="text-primary hover:underline font-mono"
+            >
               {personalInfo.email}
             </a>
           </div>
