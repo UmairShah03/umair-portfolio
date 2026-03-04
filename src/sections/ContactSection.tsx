@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Github, Linkedin, Twitter } from "lucide-react";
+import { Send, Github, Linkedin, Twitter, Loader2 } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
 import { personalInfo, socialLinks } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
@@ -16,14 +16,12 @@ const ContactSection = () => {
     message: "",
   });
 
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   toast.success("Message sent! I'll get back to you soon.");
-  //   setFormData({ name: "", email: "", message: "" });
-  // };
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+
     emailjs
       .send(
         "service_afilmat",
@@ -37,14 +35,16 @@ const ContactSection = () => {
       )
       .then(
         () => {
-          alert("Message sent successfully!");
+          toast.success("Message sent! I'll get back to you soon.");
           setFormData({ name: "", email: "", message: "" });
         },
-        (error) => {
-          alert("Failed to send message. Try again.");
-          console.error(error);
+        () => {
+          toast.error("Failed to send message. Try again.");
         },
-      );
+      )
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -92,10 +92,20 @@ const ContactSection = () => {
           />
           <Button
             type="submit"
+            disabled={loading}
             className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto px-8"
           >
-            <Send size={16} className="mr-2" />
-            Send Message
+            {loading ? (
+              <>
+                <Loader2 size={16} className="mr-2 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              <>
+                <Send size={16} className="mr-2" />
+                Send Message
+              </>
+            )}
           </Button>
         </motion.form>
 
