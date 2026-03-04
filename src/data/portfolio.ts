@@ -14,6 +14,7 @@ import {
   SiRedis,
   SiFirebase,
   SiVite,
+  SiC,
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 
@@ -48,6 +49,7 @@ export const techStack = [
   { name: "Docker", icon: SiDocker, color: "2496ED" },
   { name: "Git", icon: SiGit, color: "F05032" },
   { name: "Figma", icon: SiFigma, color: "F24E1E" },
+  { name: "C#", icon: SiC, color: "F24E1E" },
   { name: "Vite", icon: SiVite, color: "646CFF" },
 ];
 
