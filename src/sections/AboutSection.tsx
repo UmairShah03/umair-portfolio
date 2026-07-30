@@ -58,7 +58,7 @@ const AboutSection = () => {
               variant="outline"
               className="border-primary/30 hover:bg-primary/10 hover:border-primary/50 text-foreground font-medium"
             >
-              <a href={personalInfo.resumeUrl} target="_blank" rel="noreferrer">
+              <a href={personalInfo.resumeUrl} target="_blank" rel="noreferrer" download="Umair_Shah_CV.pdf">
                 <Download size={16} className="mr-2 text-primary" />
                 Download CV
               </a>

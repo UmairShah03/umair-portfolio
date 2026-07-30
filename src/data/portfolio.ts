@@ -33,7 +33,7 @@ export const personalInfo = {
   bio: "I'm a passionate full-stack developer with 1+ years of experience building scalable web applications. I specialize in React, TypeScript, and Node.js, crafting pixel-perfect UIs with exceptional user experiences. Currently focused on building performant, accessible applications that make a real impact.",
   email: "umairshah.developer@gmail.com",
   location: "Karachi, Pakistan",
-  resumeUrl: "/assets/cv.pdf",
+  resumeUrl: "/cv.pdf",
 };
 
 export const socialLinks = {
@@ -111,3 +111,39 @@ export const experiences = [
       "Designed and customized high-performance, responsive websites with optimized loading speed, clean design systems, and seamless user experiences.",
   },
 ];
+
+export const education = [
+  {
+    degree: "Diploma in Software Engineering",
+    institution: "Aligarh Institute of Technology",
+    location: "Karachi, Pakistan",
+    period: "2023 – 2026",
+    description:
+      "Specialized in software engineering principles, full-stack application development, database management systems, and software architecture.",
+  },
+  {
+    degree: "Diploma in Information Technology",
+    institution: "Aptech Institute of Technology",
+    location: "Karachi, Pakistan",
+    period: "2022 – 2023",
+    description:
+      "Professional diploma focused on modern web technologies, software engineering fundamentals, database management, and UI design.",
+  },
+  {
+    degree: "Intermediate",
+    institution: "Board of Intermediate",
+    location: "Karachi, Pakistan",
+    period: "2021",
+    description:
+      "Higher secondary education with a strong foundation in computer science, mathematics, and analytical problem-solving.",
+  },
+  {
+    degree: "Matriculation",
+    institution: "Board Of Secondary Education",
+    location: "Karachi, Pakistan",
+    period: "2019",
+    description:
+      "Secondary school certification in Science stream with focus on science, mathematics, and foundational computer studies.",
+  },
+];
+
