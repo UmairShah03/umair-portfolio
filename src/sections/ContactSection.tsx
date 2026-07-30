@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Github, Linkedin, Twitter, Loader2, Mail, MapPin, MessageSquare } from "lucide-react";
+import { Send, Github, Linkedin, Twitter, Loader2, Mail, MapPin, MessageSquare, Copy, Check } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
 import { personalInfo, socialLinks } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,16 @@ const ContactSection = () => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const copyEmailToClipboard = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(personalInfo.email);
+    setCopied(true);
+    toast.success("Email copied to clipboard!");
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,20 +149,43 @@ const ContactSection = () => {
             </p>
 
             <div className="space-y-4 pt-2">
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="flex items-center gap-3 p-3 rounded-xl bg-secondary/30 hover:bg-secondary/60 border border-border/40 transition-colors group"
-              >
-                <div className="p-2.5 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
-                  <Mail size={18} />
-                </div>
-                <div>
-                  <p className="text-xs font-mono text-muted-foreground">Email</p>
-                  <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {personalInfo.email}
-                  </p>
-                </div>
-              </a>
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-secondary/30 hover:bg-secondary/50 border border-border/40 transition-colors group">
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="flex items-center gap-3 overflow-hidden"
+                >
+                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform shrink-0">
+                    <Mail size={18} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-mono text-muted-foreground">Email</p>
+                    <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                      {personalInfo.email}
+                    </p>
+                  </div>
+                </a>
+
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={copyEmailToClipboard}
+                  className="text-muted-foreground hover:text-primary hover:bg-primary/10 ml-2 px-2.5 py-1.5 h-auto text-xs flex items-center gap-1.5 transition-all"
+                  title="Copy email to clipboard"
+                >
+                  {copied ? (
+                    <>
+                      <Check size={14} className="text-emerald-500" />
+                      <span className="text-emerald-500 font-medium">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={14} />
+                      <span className="hidden sm:inline">Copy</span>
+                    </>
+                  )}
+                </Button>
+              </div>
 
               <div className="flex items-center gap-3 p-3 rounded-xl bg-secondary/30 border border-border/40">
                 <div className="p-2.5 rounded-lg bg-primary/10 text-primary">

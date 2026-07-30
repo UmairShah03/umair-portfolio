@@ -1,11 +1,30 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Twitter } from "lucide-react";
 import { personalInfo, socialLinks } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-20">
+      {/* Interactive Cursor Spotlight Glow */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300 hidden md:block"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(174, 72, 56, 0.08), transparent 80%)`,
+        }}
+      />
+
       {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />

@@ -44,30 +44,33 @@ export const socialLinks = {
 };
 
 export const techStack = [
-  { name: "React", icon: SiReact, color: "61DAFB" },
-  { name: "JavaScript", icon: SiJavascript, color: "F7DF1E" },
-  { name: "TypeScript", icon: SiTypescript, color: "3178C6" },
-  { name: "ASP.NET Core", icon: SiDotnet, color: "512BD4" },
-  { name: "ASP.NET WebForms", icon: SiDotnet, color: "5C2D91" },
-  { name: "C#", icon: TbBrandCSharp, color: "512BD4" },
-  { name: "SQL Server", icon: DiMsqlServer, color: "CC292B" },
-  { name: "PL/SQL", icon: TbSql, color: "F80000" },
-  { name: "Next.js", icon: SiNextdotjs, color: "FFFFFF" },
-  { name: "Node.js", icon: SiNodedotjs, color: "5FA04E" },
-  { name: "Express.js", icon: SiExpress, color: "E0E0E0" },
-  { name: "Nest.js", icon: SiNestjs, color: "E0234E" },
-  { name: "Redux", icon: SiRedux, color: "764ABC" },
-  { name: "Tailwind CSS", icon: SiTailwindcss, color: "06B6D4" },
-  { name: "PostgreSQL", icon: SiPostgresql, color: "4169E1" },
-  { name: "MongoDB", icon: SiMongodb, color: "47A248" },
-  { name: "Redis", icon: DiRedis, color: "FF4438" },
-  { name: "Prisma", icon: SiPrisma, color: "5A67D8" },
-  { name: "Docker", icon: SiDocker, color: "2496ED" },
-  { name: "Git", icon: SiGit, color: "F05032" },
-  { name: "Figma", icon: SiFigma, color: "F24E1E" },
-  { name: "Python", icon: SiPython, color: "3776AB" },
-  { name: "Firebase", icon: SiFirebase, color: "FFCA28" },
-  { name: "Vite", icon: SiVite, color: "646CFF" },
+  { name: "React", icon: SiReact, color: "61DAFB", category: "Frontend" },
+  { name: "JavaScript", icon: SiJavascript, color: "F7DF1E", category: "Frontend" },
+  { name: "TypeScript", icon: SiTypescript, color: "3178C6", category: "Frontend" },
+  { name: "Next.js", icon: SiNextdotjs, color: "FFFFFF", category: "Frontend" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "06B6D4", category: "Frontend" },
+  { name: "Redux", icon: SiRedux, color: "764ABC", category: "Frontend" },
+  { name: "Vite", icon: SiVite, color: "646CFF", category: "Frontend" },
+  { name: "Figma", icon: SiFigma, color: "F24E1E", category: "Frontend" },
+
+  { name: "Node.js", icon: SiNodedotjs, color: "5FA04E", category: "Backend" },
+  { name: "Express.js", icon: SiExpress, color: "E0E0E0", category: "Backend" },
+  { name: "Nest.js", icon: SiNestjs, color: "E0234E", category: "Backend" },
+  { name: "ASP.NET Core", icon: SiDotnet, color: "512BD4", category: "Backend" },
+  { name: "ASP.NET WebForms", icon: SiDotnet, color: "5C2D91", category: "Backend" },
+  { name: "C#", icon: TbBrandCSharp, color: "512BD4", category: "Backend" },
+  { name: "Python", icon: SiPython, color: "3776AB", category: "Backend" },
+
+  { name: "PostgreSQL", icon: SiPostgresql, color: "4169E1", category: "Database" },
+  { name: "MongoDB", icon: SiMongodb, color: "47A248", category: "Database" },
+  { name: "SQL Server", icon: DiMsqlServer, color: "CC292B", category: "Database" },
+  { name: "PL/SQL", icon: TbSql, color: "F80000", category: "Database" },
+  { name: "Redis", icon: DiRedis, color: "FF4438", category: "Database" },
+  { name: "Prisma", icon: SiPrisma, color: "5A67D8", category: "Database" },
+  { name: "Firebase", icon: SiFirebase, color: "FFCA28", category: "Database" },
+
+  { name: "Docker", icon: SiDocker, color: "2496ED", category: "Tools & DevOps" },
+  { name: "Git", icon: SiGit, color: "F05032", category: "Tools & DevOps" },
 ];
 
 export const projects = [
@@ -76,8 +79,9 @@ export const projects = [
     description:
       "A multi-tenant school management system enabling multiple educational institutions to securely manage operations, student records, and academics independently on a shared, scalable platform.",
     tech: ["React", "TypeScript", "Node.js", "Nest.js", "Supabase", "Redis"],
-    liveUrl: "https://edurevolution.pk/",
+    liveUrl: "-",
     githubUrl: "-",
+    isPrivateSaaS: true,
     image: "https://edurevolution.pk/assets/images/full-logo.png",
   },
   {
