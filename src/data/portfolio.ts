@@ -6,7 +6,6 @@ import {
   SiRedux,
   SiExpress,
   SiNestjs,
-  SiRedis,
   SiTailwindcss,
   SiMongodb,
   SiPostgresql,
@@ -20,6 +19,7 @@ import {
   SiVite,
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
+import { DiRedis } from "react-icons/di";
 
 const logo = "/logo.png";
 
@@ -54,7 +54,7 @@ export const techStack = [
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "06B6D4" },
   { name: "PostgreSQL", icon: SiPostgresql, color: "4169E1" },
   { name: "MongoDB", icon: SiMongodb, color: "47A248" },
-  { name: "Redis", icon: SiRedis, color: "DC382D" },
+  { name: "Redis", icon: DiRedis, color: "FF4438" },
   { name: "Prisma", icon: SiPrisma, color: "5A67D8" },
   { name: "Docker", icon: SiDocker, color: "2496ED" },
   { name: "Git", icon: SiGit, color: "F05032" },
