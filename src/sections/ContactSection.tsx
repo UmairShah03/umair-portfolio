@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Github, Linkedin, Twitter, Loader2 } from "lucide-react";
+import { Send, Github, Linkedin, Twitter, Loader2, Mail, MapPin, MessageSquare } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
 import { personalInfo, socialLinks } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,7 @@ const ContactSection = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
@@ -51,58 +51,75 @@ const ContactSection = () => {
     <SectionWrapper id="contact">
       <SectionHeading
         title="Get In Touch"
-        subtitle="Have a project in mind? Let's talk."
+        subtitle="Have a project in mind, a question, or an opportunity? Let's build something great together."
       />
 
-      <div className="grid md:grid-cols-2 gap-10 max-w-4xl">
+      <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="space-y-5"
+          className="glass rounded-2xl p-6 md:p-8 space-y-5 border border-border/50 shadow-xl"
         >
-          <Input
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-            className="bg-secondary/50 border-border/50 focus:border-primary/50"
-          />
-          <Input
-            type="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            required
-            className="bg-secondary/50 border-border/50 focus:border-primary/50"
-          />
-          <Textarea
-            placeholder="Your Message"
-            rows={5}
-            value={formData.message}
-            onChange={(e) =>
-              setFormData({ ...formData, message: e.target.value })
-            }
-            required
-            className="bg-secondary/50 border-border/50 focus:border-primary/50 resize-none"
-          />
+          <h3 className="text-xl font-bold text-foreground mb-2 flex items-center gap-2">
+            <MessageSquare className="text-primary" size={20} />
+            Send a Message
+          </h3>
+
+          <div className="space-y-1">
+            <label className="text-xs font-mono text-muted-foreground">Your Name</label>
+            <Input
+              placeholder="e.g. John Doe"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+              className="bg-secondary/40 border-border/60 focus:border-primary/60"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-xs font-mono text-muted-foreground">Your Email</label>
+            <Input
+              type="email"
+              placeholder="john@example.com"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              required
+              className="bg-secondary/40 border-border/60 focus:border-primary/60"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-xs font-mono text-muted-foreground">Message</label>
+            <Textarea
+              placeholder="Tell me about your project or offer..."
+              rows={5}
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+              required
+              className="bg-secondary/40 border-border/60 focus:border-primary/60 resize-none"
+            />
+          </div>
+
           <Button
             type="submit"
             disabled={loading}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto px-8"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 w-full font-semibold py-6 glow-border transition-all duration-200"
           >
             {loading ? (
               <>
-                <Loader2 size={16} className="mr-2 animate-spin" />
-                Sending...
+                <Loader2 size={18} className="mr-2 animate-spin" />
+                Sending Message...
               </>
             ) : (
               <>
-                <Send size={16} className="mr-2" />
+                <Send size={18} className="mr-2" />
                 Send Message
               </>
             )}
@@ -114,41 +131,63 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-6"
         >
-          <div>
-            <p className="text-muted-foreground leading-relaxed">
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
+          <div className="glass rounded-2xl p-6 border border-border/50 space-y-4">
+            <h3 className="text-xl font-bold text-foreground">Contact Details</h3>
+            <p className="text-muted-foreground leading-relaxed text-sm">
+              Feel free to reach out directly via email or social platforms. I typically respond within 24 hours.
             </p>
+
+            <div className="space-y-4 pt-2">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="flex items-center gap-3 p-3 rounded-xl bg-secondary/30 hover:bg-secondary/60 border border-border/40 transition-colors group"
+              >
+                <div className="p-2.5 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                  <Mail size={18} />
+                </div>
+                <div>
+                  <p className="text-xs font-mono text-muted-foreground">Email</p>
+                  <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {personalInfo.email}
+                  </p>
+                </div>
+              </a>
+
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-secondary/30 border border-border/40">
+                <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+                  <MapPin size={18} />
+                </div>
+                <div>
+                  <p className="text-xs font-mono text-muted-foreground">Location</p>
+                  <p className="text-sm font-semibold text-foreground">
+                    {personalInfo.location}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div>
-            <p className="text-sm text-muted-foreground mb-1">Email</p>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="text-primary hover:underline font-mono"
-            >
-              {personalInfo.email}
-            </a>
-          </div>
-
-          <div>
-            <p className="text-sm text-muted-foreground mb-3">Connect</p>
-            <div className="flex gap-4">
+          <div className="glass rounded-2xl p-6 border border-border/50 space-y-3">
+            <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+              Social Profiles
+            </p>
+            <div className="flex gap-3">
               {[
-                { icon: Github, href: socialLinks.github },
-                { icon: Linkedin, href: socialLinks.linkedin },
-                { icon: Twitter, href: socialLinks.twitter },
-              ].map(({ icon: Icon, href }) => (
+                { icon: Github, href: socialLinks.github, label: "GitHub" },
+                { icon: Linkedin, href: socialLinks.linkedin, label: "LinkedIn" },
+                { icon: Twitter, href: socialLinks.twitter, label: "Twitter" },
+              ].map(({ icon: Icon, href, label }) => (
                 <a
-                  key={href}
+                  key={label}
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-10 h-10 glass rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-200"
+                  className="flex-1 py-3 glass rounded-xl flex items-center justify-center gap-2 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-200 group"
                 >
-                  <Icon size={18} />
+                  <Icon size={18} className="group-hover:scale-110 transition-transform" />
+                  <span className="text-xs font-medium">{label}</span>
                 </a>
               ))}
             </div>
@@ -160,3 +199,4 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+
