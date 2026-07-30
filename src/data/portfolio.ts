@@ -1,8 +1,12 @@
 import {
   SiReact,
+  SiJavascript,
   SiTypescript,
   SiNodedotjs,
+  SiRedux,
+  SiExpress,
   SiNestjs,
+  SiRedis,
   SiTailwindcss,
   SiMongodb,
   SiPostgresql,
@@ -13,6 +17,7 @@ import {
   SiFigma,
   SiGraphql,
   SiRedis,
+  SiPrisma,
   SiFirebase,
   SiVite,
   SiC,
@@ -42,10 +47,15 @@ export const socialLinks = {
 
 export const techStack = [
   { name: "React", icon: SiReact, color: "61DAFB" },
+  { name: "JavaScript", icon: SiJavascript , color: "61DAFB" },
   { name: "TypeScript", icon: SiTypescript, color: "3178C6" },
+  { name: "Redux", icon: SiRedux , color: "3178C6" },
+  { name: "Express.js", icon: SiExpress , color: "3178C6" },
   { name: "Next.js", icon: SiNextdotjs, color: "FFFFFF" },
   { name: "Node.js", icon: SiNodedotjs, color: "339933" },
   { name: "Nest.js", icon: SiNestjs, color: "339933" },
+  { name: "Redis", icon: SiRedis, color: "339933" },
+  { name: "Prisma", icon: SiPrisma , color: "339933" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "06B6D4" },
   { name: "PostgreSQL", icon: SiPostgresql, color: "4169E1" },
   { name: "Docker", icon: SiDocker, color: "2496ED" },
@@ -56,6 +66,15 @@ export const techStack = [
 ];
 
 export const projects = [
+   {
+    title: "EduRevolution",
+    description:
+      "A multi-tenant school management system is a centralized platform that enables multiple schools to securely manage their operations independently using a shared application and infrastructure",
+    tech: ["React", "TypeScript", "Node.js" , "Nest.js","Supbase","Redis"],
+    liveUrl: "https://edurevolution.pk/",
+    githubUrl: "-",
+    image: "https://liorae.vercel.app/assets/logo-JnJqt-Cq.png",
+  },
   {
     title: "Liorae-Ecommerce",
     description:
@@ -63,7 +82,7 @@ export const projects = [
     tech: ["React", "TypeScript", "Node.js"],
     liveUrl: "https://liorae.vercel.app/",
     githubUrl: "https://github.com/UmairShah03/Liorae",
-    image: "https://liorae.vercel.app/assets/logo-JnJqt-Cq.png",
+    image: "https://edurevolution.pk/assets/images/full-logo.png",
   },
   {
     title: "Klimate",
