@@ -17,9 +17,10 @@ import {
   SiPrisma,
   SiFirebase,
   SiVite,
+  SiDotnet,
 } from "react-icons/si";
-import { TbBrandCSharp } from "react-icons/tb";
-import { DiRedis } from "react-icons/di";
+import { TbBrandCSharp, TbSql } from "react-icons/tb";
+import { DiRedis, DiMsqlServer } from "react-icons/di";
 
 const logo = "/logo.png";
 
@@ -46,6 +47,11 @@ export const techStack = [
   { name: "React", icon: SiReact, color: "61DAFB" },
   { name: "JavaScript", icon: SiJavascript, color: "F7DF1E" },
   { name: "TypeScript", icon: SiTypescript, color: "3178C6" },
+  { name: "ASP.NET Core", icon: SiDotnet, color: "512BD4" },
+  { name: "ASP.NET WebForms", icon: SiDotnet, color: "5C2D91" },
+  { name: "C#", icon: TbBrandCSharp, color: "512BD4" },
+  { name: "SQL Server", icon: DiMsqlServer, color: "CC292B" },
+  { name: "PL/SQL", icon: TbSql, color: "F80000" },
   { name: "Next.js", icon: SiNextdotjs, color: "FFFFFF" },
   { name: "Node.js", icon: SiNodedotjs, color: "5FA04E" },
   { name: "Express.js", icon: SiExpress, color: "E0E0E0" },
@@ -59,7 +65,6 @@ export const techStack = [
   { name: "Docker", icon: SiDocker, color: "2496ED" },
   { name: "Git", icon: SiGit, color: "F05032" },
   { name: "Figma", icon: SiFigma, color: "F24E1E" },
-  { name: "C#", icon: TbBrandCSharp, color: "512BD4" },
   { name: "Python", icon: SiPython, color: "3776AB" },
   { name: "Firebase", icon: SiFirebase, color: "FFCA28" },
   { name: "Vite", icon: SiVite, color: "646CFF" },
