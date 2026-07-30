@@ -16,6 +16,7 @@ const ContactSection = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const copyEmailToClipboard = (e: React.MouseEvent) => {
