@@ -23,6 +23,7 @@ import {
 } from "react-icons/si";
 import { TbBrandCSharp, TbSql } from "react-icons/tb";
 import { DiRedis, DiMsqlServer } from "react-icons/di";
+import { TypeOrmIcon } from "@/components/icons/TypeOrmIcon";
 
 const logo = "/logo.png";
 
@@ -71,7 +72,7 @@ export const techStack = [
   { name: "PL/SQL", icon: TbSql, color: "F80000", category: "Database" },
   { name: "Redis", icon: DiRedis, color: "FF4438", category: "Database" },
   { name: "Prisma", icon: SiPrisma, color: "5A67D8", category: "Database" },
-  { name: "TypeORM", icon: TbSql, color: "FC2D2D", category: "Database" },
+  { name: "TypeORM", icon: TypeOrmIcon, color: "FC2D2D", category: "Database" },
   { name: "Firebase", icon: SiFirebase, color: "FFCA28", category: "Database" },
 
   { name: "Docker", icon: SiDocker, color: "2496ED", category: "Tools & DevOps" },
