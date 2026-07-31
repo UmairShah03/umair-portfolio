@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Briefcase, GraduationCap, Building2, Calendar, MapPin, Award } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
-import { experiences, education } from "@/data/portfolio";
+import { experiences, education, siteContent } from "@/data/portfolio";
 import { Badge } from "@/components/ui/badge";
 
 const ExperienceSection = () => {
@@ -14,8 +14,8 @@ const ExperienceSection = () => {
       <div id="education" className="scroll-mt-24" />
 
       <SectionHeading
-        title="Experience & Education"
-        subtitle="My professional journey, engineering roles, and academic qualifications."
+        title={siteContent.experience.title}
+        subtitle={siteContent.experience.subtitle}
       />
 
       {/* Tab Controls */}
@@ -38,7 +38,7 @@ const ExperienceSection = () => {
             )}
             <span className="relative z-10 flex items-center gap-2">
               <Briefcase size={16} />
-              Work Experience
+              {siteContent.experience.tabs.experience}
               <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-background/20">
                 {experiences.length}
               </span>
@@ -62,7 +62,7 @@ const ExperienceSection = () => {
             )}
             <span className="relative z-10 flex items-center gap-2">
               <GraduationCap size={18} />
-              Education
+              {siteContent.experience.tabs.education}
               <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-background/20">
                 {education.length}
               </span>
@@ -190,5 +190,3 @@ const ExperienceSection = () => {
 };
 
 export default ExperienceSection;
-
-

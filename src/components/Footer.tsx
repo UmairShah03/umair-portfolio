@@ -1,5 +1,5 @@
 import { ArrowUp, Github, Linkedin, Twitter } from "lucide-react";
-import { socialLinks } from "@/data/portfolio";
+import { socialLinks, siteContent } from "@/data/portfolio";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -11,10 +11,10 @@ const Footer = () => {
       <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-center md:text-left">
           <p className="text-sm font-medium text-foreground">
-            Umair Shah <span className="text-primary font-bold">•</span> Full Stack Developer
+            Umair Shah <span className="text-primary font-bold">•</span> {siteContent.footer.developerRole}
           </p>
           <p className="text-xs text-muted-foreground mt-1">
-            © {new Date().getFullYear()} All rights reserved. Crafted with React & Tailwind.
+            © {new Date().getFullYear()} {siteContent.footer.rights}
           </p>
         </div>
 

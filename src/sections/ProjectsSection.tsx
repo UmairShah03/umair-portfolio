@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Lock, Code2, Key, ShieldCheck } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
-import { projects, techStack } from "@/data/portfolio";
+import { projects, techStack, siteContent } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
@@ -44,7 +44,7 @@ const ProjectCard = ({
           <div className="absolute top-3 right-3 z-10">
             <Badge className="bg-amber-500/10 text-amber-400 border border-amber-500/30 backdrop-blur-md font-mono text-[11px] py-1 px-2.5">
               <ShieldCheck size={12} className="mr-1 inline" />
-              Private SaaS
+              {siteContent.projects.privateSaaS}
             </Badge>
           </div>
         )}
@@ -112,7 +112,7 @@ const ProjectCard = ({
               >
                 <a href={project.liveUrl} target="_blank" rel="noreferrer">
                   <ExternalLink size={14} className="mr-1.5" />
-                  Live Demo
+                  {siteContent.projects.liveDemo}
                 </a>
               </Button>
             ) : (
@@ -121,14 +121,12 @@ const ProjectCard = ({
                 size="sm"
                 className="bg-primary/15 text-primary border border-primary/40 hover:bg-primary hover:text-primary-foreground font-medium px-4 transition-all duration-200"
                 onClick={() =>
-                  toast.info(
-                    "Private Enterprise SaaS: Contact me to receive test demo credentials!"
-                  )
+                  toast.info(siteContent.projects.contactDemoToast)
                 }
               >
                 <a href="#contact">
                   <Key size={14} className="mr-1.5 text-primary group-hover:text-primary-foreground" />
-                  Contact for Demo Credentials
+                  {siteContent.projects.contactDemo}
                 </a>
               </Button>
             )}
@@ -142,7 +140,7 @@ const ProjectCard = ({
               >
                 <a href={project.githubUrl} target="_blank" rel="noreferrer">
                   <Github size={14} className="mr-1.5" />
-                  Code
+                  {siteContent.projects.code}
                 </a>
               </Button>
             ) : (
@@ -153,7 +151,7 @@ const ProjectCard = ({
                 className="border-border/40 text-muted-foreground/60 cursor-not-allowed font-medium px-4 opacity-70"
               >
                 <Lock size={13} className="mr-1.5" />
-                Private Repo
+                {siteContent.projects.privateRepo}
               </Button>
             )}
           </div>
@@ -167,8 +165,8 @@ const ProjectsSection = () => {
   return (
     <SectionWrapper id="projects">
       <SectionHeading
-        title="Featured Projects"
-        subtitle="A selection of full-stack applications and platforms I've architected & built."
+        title={siteContent.projects.title}
+        subtitle={siteContent.projects.subtitle}
       />
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {projects.map((project, i) => (
@@ -180,4 +178,3 @@ const ProjectsSection = () => {
 };
 
 export default ProjectsSection;
-

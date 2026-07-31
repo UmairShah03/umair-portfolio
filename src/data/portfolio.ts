@@ -33,7 +33,7 @@ export const LogoImage = {
 export const personalInfo = {
   name: "Umair Shah",
   tagline: "Full Stack Developer | React, TypeScript & NestJS Specialist",
-  bio: "I am a driven Full Stack Developer with 1+ years of professional engineering experience architecting scalable web applications, multi-tenant SaaS platforms, and secure systems. I specialize in Next.js, React, TypeScript, Node.js, Nest.js, and modern database architectures (Supabase, PostgreSQL, MongoDB, SQL Server), crafting pixel-perfect UIs with robust, high-availability backend systems.",
+  bio: "I am a driven Full Stack Developer with 2+ years of professional engineering experience architecting scalable web applications, multi-tenant SaaS platforms, and secure systems. I specialize in Next.js, React, TypeScript, Node.js, Nest.js, and modern database architectures (Supabase, PostgreSQL, MongoDB, SQL Server), crafting pixel-perfect UIs with robust, high-availability backend systems.",
   email: "umairshah.developer@gmail.com",
   location: "Karachi, Pakistan",
   resumeUrl: "/cv.pdf",
@@ -71,6 +71,7 @@ export const techStack = [
   { name: "PL/SQL", icon: TbSql, color: "F80000", category: "Database" },
   { name: "Redis", icon: DiRedis, color: "FF4438", category: "Database" },
   { name: "Prisma", icon: SiPrisma, color: "5A67D8", category: "Database" },
+  { name: "TypeORM", icon: TbSql, color: "FC2D2D", category: "Database" },
   { name: "Firebase", icon: SiFirebase, color: "FFCA28", category: "Database" },
 
   { name: "Docker", icon: SiDocker, color: "2496ED", category: "Tools & DevOps" },
@@ -159,4 +160,102 @@ export const education = [
       "Secondary school certification in Science stream with focus on science, mathematics, and foundational computer studies.",
   },
 ];
+
+export const navItems = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#tech" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
+  { label: "Contact", href: "#contact" },
+];
+
+export const siteContent = {
+  hero: {
+    badge: "Available for new opportunities",
+    greeting: "Hello, I am",
+    line1: "Innovative Solutions",
+    line2: "Develop With Umair",
+    viewProjects: "View Projects",
+    getInTouch: "Get In Touch",
+    hireMe: "Hire Me",
+  },
+  about: {
+    title: "About Me",
+    subtitle: "Passionate developer turning complex problems into elegant web software.",
+    downloadCv: "Download CV",
+    quickStats: "Quick Stats",
+    highlights: [
+      { text: "Frontend Architecture (React, TypeScript, Redux Toolkit, Zustand, Tailwind)", iconName: "Code" },
+      { text: "Backend Systems & APIs (Node.js, Nest.js, Express.js, ASP.NET Core, C#)", iconName: "Server" },
+      { text: "Database & Cloud Infrastructure (Supabase, PostgreSQL, SQL Server, Redis, PL/SQL)", iconName: "Database" },
+      { text: "Domain Experience (Core Banking Solutions & Multi-Tenant Enterprise SaaS)", iconName: "ShieldCheck" },
+    ],
+    stats: [
+      { label: "Years Experience", value: "2+" },
+      { label: "Projects Completed", value: "5+" },
+      { label: "Happy Clients", value: "3+" },
+      { label: "Open Source Contributions", value: "10+" },
+    ],
+  },
+  skills: {
+    title: "Tech Stack & Skills",
+    subtitle: "Technologies and tools I work with daily to craft scalable web solutions.",
+    categories: ["All", "Frontend", "Backend", "Database", "Tools & DevOps"],
+  },
+  projects: {
+    title: "Featured Projects",
+    subtitle: "A selection of full-stack applications and platforms I've architected & built.",
+    liveDemo: "Live Demo",
+    privateRepo: "Private Repo",
+    privateSaaS: "Private SaaS",
+    contactDemo: "Contact for Demo Credentials",
+    contactDemoToast: "Private Enterprise SaaS: Contact me to receive test demo credentials!",
+    code: "Code",
+  },
+  experience: {
+    title: "Experience & Education",
+    subtitle: "My professional journey, engineering roles, and academic qualifications.",
+    tabs: {
+      experience: "Work Experience",
+      education: "Education",
+    },
+  },
+  contact: {
+    title: "Get In Touch",
+    subtitle: "Have a project in mind, a question, or an opportunity? Let's build something great together.",
+    form: {
+      heading: "Send a Message",
+      nameLabel: "Your Name",
+      namePlaceholder: "e.g. John Doe",
+      emailLabel: "Your Email",
+      emailPlaceholder: "john@example.com",
+      subjectLabel: "Subject",
+      subjectPlaceholder: "e.g. Project Inquiry",
+      messageLabel: "Message",
+      messagePlaceholder: "Tell me about your project or offer...",
+      sendBtn: "Send Message",
+      sendingBtn: "Sending Message...",
+      successToast: "Opening your mail client to send message!",
+      errorToast: "Could not open mail client automatically. Please send mail directly to ",
+      suggestedSubjectPrefix: "Suggested Subject",
+      prefillTemplateLabel: "Prefill professional message draft",
+    },
+    details: {
+      heading: "Contact Details",
+      description: "Feel free to reach out directly via email or social platforms. I typically respond within 24 hours.",
+      emailLabel: "Email",
+      locationLabel: "Location",
+      copyBtn: "Copy",
+      copiedBtn: "Copied!",
+      copyToast: "Email copied to clipboard!",
+      socialsLabel: "Social Profiles",
+    },
+  },
+  footer: {
+    developerRole: "Full Stack Developer",
+    rights: "All rights reserved. Crafted with React & Tailwind.",
+  },
+};
+
 

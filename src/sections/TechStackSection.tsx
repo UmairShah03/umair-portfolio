@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
-import { techStack } from "@/data/portfolio";
+import { techStack, siteContent } from "@/data/portfolio";
 import type { IconType } from "react-icons";
 
 interface TechItemProps {
@@ -55,21 +55,20 @@ const TechItem = ({ name, icon: Icon, color }: TechItemProps) => {
   );
 };
 
-const categories = ["All", "Frontend", "Backend", "Database", "Tools & DevOps"];
-
 const TechStackSection = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const categories = siteContent.skills.categories;
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
 
   const filteredTech =
-    activeCategory === "All"
+    activeCategory === categories[0]
       ? techStack
       : techStack.filter((t) => t.category === activeCategory);
 
   return (
     <SectionWrapper id="tech">
       <SectionHeading
-        title="Tech Stack & Skills"
-        subtitle="Technologies and tools I work with daily to craft scalable web solutions."
+        title={siteContent.skills.title}
+        subtitle={siteContent.skills.subtitle}
       />
 
       {/* Filter Tabs */}
@@ -77,7 +76,7 @@ const TechStackSection = () => {
         {categories.map((category) => {
           const isActive = activeCategory === category;
           const count =
-            category === "All"
+            category === categories[0]
               ? techStack.length
               : techStack.filter((t) => t.category === category).length;
 
@@ -126,5 +125,3 @@ const TechStackSection = () => {
 };
 
 export default TechStackSection;
-
-

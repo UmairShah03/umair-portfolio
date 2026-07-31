@@ -1,17 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Code2 } from "lucide-react";
-import { LogoImage, personalInfo } from "@/data/portfolio";
+import { LogoImage, personalInfo, navItems, siteContent } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#tech" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
-];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -66,7 +57,7 @@ const Navbar = () => {
             size="sm"
             className="bg-primary/90 text-primary-foreground hover:bg-primary glow-border font-medium px-5"
           >
-            <a href={`mailto:${personalInfo.email}`}>Hire Me</a>
+            <a href={`mailto:${personalInfo.email}`}>{siteContent.hero.hireMe}</a>
           </Button>
         </div>
 
@@ -106,7 +97,7 @@ const Navbar = () => {
                 className="bg-primary text-primary-foreground w-full mt-2"
                 onClick={() => setMobileOpen(false)}
               >
-                <a href={`mailto:${personalInfo.email}`}>Hire Me</a>
+                <a href={`mailto:${personalInfo.email}`}>{siteContent.hero.hireMe}</a>
               </Button>
             </div>
           </motion.div>

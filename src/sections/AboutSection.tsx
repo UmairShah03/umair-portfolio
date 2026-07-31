@@ -1,22 +1,27 @@
 import { motion } from "framer-motion";
 import { Download, MapPin, Sparkles, Code, Server, Database, ShieldCheck } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
-import { personalInfo } from "@/data/portfolio";
+import { personalInfo, siteContent } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 
+const iconMap = {
+  Code,
+  Server,
+  Database,
+  ShieldCheck,
+};
+
 const AboutSection = () => {
-  const highlights = [
-    { icon: Code, text: "Frontend Architecture (React, TypeScript, Redux Toolkit, Zustand, Tailwind)" },
-    { icon: Server, text: "Backend Systems & APIs (Node.js, Nest.js, Express.js, ASP.NET Core, C#)" },
-    { icon: Database, text: "Database & Cloud Infrastructure (Supabase, PostgreSQL, SQL Server, Redis, PL/SQL)" },
-    { icon: ShieldCheck, text: "Domain Experience (Core Banking Solutions & Multi-Tenant Enterprise SaaS)" },
-  ];
+  const highlights = siteContent.about.highlights.map((h) => ({
+    icon: iconMap[h.iconName as keyof typeof iconMap] || Code,
+    text: h.text,
+  }));
 
   return (
     <SectionWrapper id="about">
       <SectionHeading
-        title="About Me"
-        subtitle="Passionate developer turning complex problems into elegant web software."
+        title={siteContent.about.title}
+        subtitle={siteContent.about.subtitle}
       />
 
       <div className="grid md:grid-cols-5 gap-10 items-stretch">
@@ -61,7 +66,7 @@ const AboutSection = () => {
             >
               <a href={personalInfo.resumeUrl} target="_blank" rel="noreferrer" download="Umair_Shah_CV.pdf">
                 <Download size={16} className="mr-2 text-primary" />
-                Download CV
+                {siteContent.about.downloadCv}
               </a>
             </Button>
           </div>
@@ -74,19 +79,14 @@ const AboutSection = () => {
           viewport={{ once: true }}
           className="md:col-span-2"
         >
-          <div className="glass rounded-2xl p-6 space-y-6 glow-border h-full flex flex-col justify-between">
+          <div className="glass rounded-2xl p-6 space-y-6 glow-border h-full flex flex-col">
             <div className="flex items-center gap-2 border-b border-border/50 pb-4">
               <Sparkles className="w-5 h-5 text-primary animate-pulse" />
-              <h3 className="font-bold text-lg text-foreground">Quick Stats</h3>
+              <h3 className="font-bold text-lg text-foreground">{siteContent.about.quickStats}</h3>
             </div>
 
             <div className="space-y-4">
-              {[
-                { label: "Years Experience", value: "2+" },
-                { label: "Projects Completed", value: "5+" },
-                { label: "Happy Clients", value: "3+" },
-                { label: "Open Source Contributions", value: "10+" },
-              ].map((stat) => (
+              {siteContent.about.stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="flex justify-between items-center p-3 rounded-xl bg-secondary/40 border border-border/40"
@@ -108,4 +108,3 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
-

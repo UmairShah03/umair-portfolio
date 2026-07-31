@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Twitter } from "lucide-react";
-import { personalInfo, socialLinks } from "@/data/portfolio";
+import { personalInfo, socialLinks, siteContent } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import InteractiveRevealText from "@/components/InteractiveRevealText";
 
@@ -22,19 +22,19 @@ const HeroSection = () => {
       <div
         className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300 hidden md:block"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(174, 72, 56, 0.08), transparent 80%)`,
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(174, 72, 56, 0.15), transparent 80%)`,
         }}
       />
 
       {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-pulse [animation-delay:1.5s]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 -left-32 w-[30rem] h-[30rem] bg-primary/35 rounded-full blur-[130px] animate-pulse" />
+        <div className="absolute bottom-1/4 -right-32 w-[30rem] h-[30rem] bg-accent/30 rounded-full blur-[130px] animate-pulse [animation-delay:1.5s]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/12 rounded-full blur-[110px]" />
       </div>
 
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.07] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
@@ -54,7 +54,7 @@ const HeroSection = () => {
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
           <span className="text-xs font-mono font-medium text-foreground/90">
-            Available for new opportunities
+            {siteContent.hero.badge}
           </span>
         </motion.div>
 
@@ -65,8 +65,8 @@ const HeroSection = () => {
           className="w-full flex justify-center overflow-visible"
         >
           <InteractiveRevealText
-            line1="Innovative Solutions"
-            line2="Develop With Umair"
+            line1={siteContent.hero.line1}
+            line2={siteContent.hero.line2}
           />
         </motion.div>
 
@@ -93,7 +93,7 @@ const HeroSection = () => {
           >
             <a href="#projects">
               <ExternalLink size={18} className="mr-2" />
-              View Projects
+              {siteContent.hero.viewProjects}
             </a>
           </Button>
           <Button
@@ -104,7 +104,7 @@ const HeroSection = () => {
           >
             <a href="#contact">
               <Mail size={18} className="mr-2" />
-              Get In Touch
+              {siteContent.hero.getInTouch}
             </a>
           </Button>
         </motion.div>

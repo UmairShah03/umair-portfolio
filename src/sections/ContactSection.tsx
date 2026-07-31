@@ -1,30 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, Github, Linkedin, Twitter, Loader2, Mail, MapPin, MessageSquare, Copy, Check } from "lucide-react";
+import { Send, Github, Linkedin, Twitter, Loader2, Mail, MapPin, MessageSquare, Copy, Check, Lightbulb, FileText } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
-import { personalInfo, socialLinks } from "@/data/portfolio";
+import { personalInfo, socialLinks, siteContent } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import emailjs from "@emailjs/browser";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
 
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // AI basic suggestions
+  const [suggestedSubject, setSuggestedSubject] = useState("");
+  const [suggestedTemplate, setSuggestedTemplate] = useState("");
+
+  // Suggest subject when message is typed
+  useEffect(() => {
+    const msg = formData.message.trim().toLowerCase();
+    const name = formData.name.trim() || "Visitor";
+    if (msg.length > 8) {
+      if (msg.includes("job") || msg.includes("hire") || msg.includes("opportunity") || msg.includes("role") || msg.includes("position")) {
+        setSuggestedSubject(`Job Opportunity - ${name}`);
+      } else if (msg.includes("project") || msg.includes("build") || msg.includes("collab") || msg.includes("app") || msg.includes("website")) {
+        setSuggestedSubject(`Project Discussion - ${name}`);
+      } else if (msg.includes("bug") || msg.includes("issue") || msg.includes("error") || msg.includes("broken")) {
+        setSuggestedSubject("Feedback: Site Bug/Issue Report");
+      } else {
+        setSuggestedSubject(`Collaboration Inquiry - ${name}`);
+      }
+    } else {
+      setSuggestedSubject("");
+    }
+  }, [formData.message, formData.name]);
+
+  // Suggest message template when subject is typed
+  useEffect(() => {
+    const subj = formData.subject.trim().toLowerCase();
+    const name = formData.name.trim() || "[Your Name]";
+    if (subj.length > 4) {
+      if (subj.includes("job") || subj.includes("hire") || subj.includes("opportunity") || subj.includes("role")) {
+        setSuggestedTemplate(`Hi Umair,\n\nI was impressed by your portfolio and experience. We have a position/opportunity open for a React & NestJS developer, and I would love to connect to discuss details.\n\nBest regards,\n${name}`);
+      } else if (subj.includes("project") || subj.includes("collab") || subj.includes("build") || subj.includes("website")) {
+        setSuggestedTemplate(`Hi Umair,\n\nI have a project idea that I'd love to build with your help. It is a web application using modern technologies. Let me know if you have availability to chat.\n\nBest,\n${name}`);
+      } else if (subj.includes("bug") || subj.includes("issue") || subj.includes("feedback")) {
+        setSuggestedTemplate(`Hi Umair,\n\nI was checking out your portfolio and wanted to report a small issue/give feedback: [Write details here]. Hope it helps!\n\nBest,\n${name}`);
+      } else {
+        setSuggestedTemplate(`Hi Umair,\n\nI'm reaching out to you regarding: [Enter details here]. Let's connect.\n\nBest,\n${name}`);
+      }
+    } else {
+      setSuggestedTemplate("");
+    }
+  }, [formData.subject, formData.name]);
+
   const copyEmailToClipboard = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     navigator.clipboard.writeText(personalInfo.email);
     setCopied(true);
-    toast.success("Email copied to clipboard!");
+    toast.success(siteContent.contact.details.copyToast);
     setTimeout(() => setCopied(false), 2500);
   };
 
@@ -32,36 +74,29 @@ const ContactSection = () => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
-        "service_afilmat",
-        "template_6w2l468",
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        },
-        "up4Ve52Y-rG6wu0p9",
-      )
-      .then(
-        () => {
-          toast.success("Message sent! I'll get back to you soon.");
-          setFormData({ name: "", email: "", message: "" });
-        },
-        () => {
-          toast.error("Failed to send message. Try again.");
-        },
-      )
-      .finally(() => {
+    setTimeout(() => {
+      try {
+        const finalSubject = formData.subject || `Portfolio Contact - Message from ${formData.name}`;
+        const body = `Hi Umair,\n\nYou received a new message from your portfolio website:\n\nName: ${formData.name}\nEmail: ${formData.email}\nSubject: ${finalSubject}\n\nMessage:\n${formData.message}`;
+        
+        const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(finalSubject)}&body=${encodeURIComponent(body)}`;
+        
+        window.location.href = mailtoUrl;
+        toast.success(siteContent.contact.form.successToast);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } catch (error) {
+        toast.error(siteContent.contact.form.errorToast + personalInfo.email);
+      } finally {
         setLoading(false);
-      });
+      }
+    }, 800);
   };
 
   return (
     <SectionWrapper id="contact">
       <SectionHeading
-        title="Get In Touch"
-        subtitle="Have a project in mind, a question, or an opportunity? Let's build something great together."
+        title={siteContent.contact.title}
+        subtitle={siteContent.contact.subtitle}
       />
 
       <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
@@ -75,13 +110,13 @@ const ContactSection = () => {
         >
           <h3 className="text-xl font-bold text-foreground mb-2 flex items-center gap-2">
             <MessageSquare className="text-primary" size={20} />
-            Send a Message
+            {siteContent.contact.form.heading}
           </h3>
 
           <div className="space-y-1">
-            <label className="text-xs font-mono text-muted-foreground">Your Name</label>
+            <label className="text-xs font-mono text-muted-foreground">{siteContent.contact.form.nameLabel}</label>
             <Input
-              placeholder="e.g. John Doe"
+              placeholder={siteContent.contact.form.namePlaceholder}
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
@@ -90,10 +125,10 @@ const ContactSection = () => {
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-mono text-muted-foreground">Your Email</label>
+            <label className="text-xs font-mono text-muted-foreground">{siteContent.contact.form.emailLabel}</label>
             <Input
               type="email"
-              placeholder="john@example.com"
+              placeholder={siteContent.contact.form.emailPlaceholder}
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -103,10 +138,33 @@ const ContactSection = () => {
             />
           </div>
 
+          <div className="space-y-1 relative">
+            <label className="text-xs font-mono text-muted-foreground">{siteContent.contact.form.subjectLabel}</label>
+            <Input
+              placeholder={siteContent.contact.form.subjectPlaceholder}
+              value={formData.subject}
+              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+              className="bg-secondary/40 border-border/60 focus:border-primary/60"
+            />
+            {/* AI Suggested Subject Badge */}
+            {suggestedSubject && !formData.subject && (
+              <motion.button
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                type="button"
+                onClick={() => setFormData({ ...formData, subject: suggestedSubject })}
+                className="mt-1.5 text-xs text-primary hover:underline flex items-center gap-1.5 font-medium bg-primary/5 border border-primary/20 px-2.5 py-1.5 rounded-full w-fit cursor-pointer transition-colors hover:bg-primary/10"
+              >
+                <Lightbulb size={12} className="text-primary animate-pulse" />
+                {siteContent.contact.form.suggestedSubjectPrefix}: "{suggestedSubject}"
+              </motion.button>
+            )}
+          </div>
+
           <div className="space-y-1">
-            <label className="text-xs font-mono text-muted-foreground">Message</label>
+            <label className="text-xs font-mono text-muted-foreground">{siteContent.contact.form.messageLabel}</label>
             <Textarea
-              placeholder="Tell me about your project or offer..."
+              placeholder={siteContent.contact.form.messagePlaceholder}
               rows={5}
               value={formData.message}
               onChange={(e) =>
@@ -115,6 +173,19 @@ const ContactSection = () => {
               required
               className="bg-secondary/40 border-border/60 focus:border-primary/60 resize-none"
             />
+            {/* AI Suggested Message Template Badge */}
+            {suggestedTemplate && !formData.message && (
+              <motion.button
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                type="button"
+                onClick={() => setFormData({ ...formData, message: suggestedTemplate })}
+                className="mt-1.5 text-xs text-primary hover:underline flex items-center gap-1.5 font-medium bg-primary/5 border border-primary/20 px-2.5 py-1.5 rounded-full w-fit cursor-pointer transition-colors hover:bg-primary/10"
+              >
+                <FileText size={12} className="text-primary animate-pulse" />
+                {siteContent.contact.form.prefillTemplateLabel}
+              </motion.button>
+            )}
           </div>
 
           <Button
@@ -125,12 +196,12 @@ const ContactSection = () => {
             {loading ? (
               <>
                 <Loader2 size={18} className="mr-2 animate-spin" />
-                Sending Message...
+                {siteContent.contact.form.sendingBtn}
               </>
             ) : (
               <>
                 <Send size={18} className="mr-2" />
-                Send Message
+                {siteContent.contact.form.sendBtn}
               </>
             )}
           </Button>
@@ -144,9 +215,9 @@ const ContactSection = () => {
           className="space-y-6"
         >
           <div className="glass rounded-2xl p-6 border border-border/50 space-y-4">
-            <h3 className="text-xl font-bold text-foreground">Contact Details</h3>
+            <h3 className="text-xl font-bold text-foreground">{siteContent.contact.details.heading}</h3>
             <p className="text-muted-foreground leading-relaxed text-sm">
-              Feel free to reach out directly via email or social platforms. I typically respond within 24 hours.
+              {siteContent.contact.details.description}
             </p>
 
             <div className="space-y-4 pt-2">
@@ -159,7 +230,7 @@ const ContactSection = () => {
                     <Mail size={18} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs font-mono text-muted-foreground">Email</p>
+                    <p className="text-xs font-mono text-muted-foreground">{siteContent.contact.details.emailLabel}</p>
                     <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                       {personalInfo.email}
                     </p>
@@ -177,12 +248,12 @@ const ContactSection = () => {
                   {copied ? (
                     <>
                       <Check size={14} className="text-emerald-500" />
-                      <span className="text-emerald-500 font-medium">Copied!</span>
+                      <span className="text-emerald-500 font-medium">{siteContent.contact.details.copiedBtn}</span>
                     </>
                   ) : (
                     <>
                       <Copy size={14} />
-                      <span className="hidden sm:inline">Copy</span>
+                      <span className="hidden sm:inline">{siteContent.contact.details.copyBtn}</span>
                     </>
                   )}
                 </Button>
@@ -193,7 +264,7 @@ const ContactSection = () => {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="text-xs font-mono text-muted-foreground">Location</p>
+                  <p className="text-xs font-mono text-muted-foreground">{siteContent.contact.details.locationLabel}</p>
                   <p className="text-sm font-semibold text-foreground">
                     {personalInfo.location}
                   </p>
@@ -204,7 +275,7 @@ const ContactSection = () => {
 
           <div className="glass rounded-2xl p-6 border border-border/50 space-y-3">
             <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
-              Social Profiles
+              {siteContent.contact.details.socialsLabel}
             </p>
             <div className="flex gap-3">
               {[
@@ -232,4 +303,3 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
-
