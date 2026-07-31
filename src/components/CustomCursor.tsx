@@ -6,6 +6,7 @@ const CustomCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(true);
 
   useEffect(() => {
     if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) return;
@@ -35,12 +36,18 @@ const CustomCursor = () => {
       }
     };
 
+    const handleToggleCursor = (e: Event) => {
+      const customEvt = e as CustomEvent<{ show: boolean }>;
+      setIsEnabled(customEvt.detail.show);
+    };
+
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
     window.addEventListener("mouseleave", onMouseLeave);
     window.addEventListener("mouseenter", onMouseEnter);
     window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("toggle-custom-cursor", handleToggleCursor as EventListener);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
@@ -49,10 +56,11 @@ const CustomCursor = () => {
       window.removeEventListener("mouseleave", onMouseLeave);
       window.removeEventListener("mouseenter", onMouseEnter);
       window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("toggle-custom-cursor", handleToggleCursor as EventListener);
     };
-  }, [isVisible]);
+  }, [isVisible, isEnabled]);
 
-  if (!isVisible) return null;
+  if (!isVisible || !isEnabled) return null;
 
   const bracketOffset = isHovered ? 12 : 7;
   const bracketSize = isHovered ? 6 : 4;

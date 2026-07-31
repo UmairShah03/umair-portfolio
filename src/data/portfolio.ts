@@ -32,8 +32,8 @@ export const LogoImage = {
 
 export const personalInfo = {
   name: "Umair Shah",
-  tagline: "Full Stack Developer | React, TypeScript & .NET Specialist",
-  bio: "I am a driven Full Stack Developer with 1+ years of professional engineering experience architecting scalable web applications, banking solutions, and multi-tenant SaaS platforms. I specialize in Next.js, React, TypeScript, Node.js, Nest.js, .NET, and modern database architectures (Supabase, PostgreSQL, SQL Server), crafting pixel-perfect UIs with robust, high-availability backend systems.",
+  tagline: "Full Stack Developer | React, TypeScript & NestJS Specialist",
+  bio: "I am a driven Full Stack Developer with 1+ years of professional engineering experience architecting scalable web applications, multi-tenant SaaS platforms, and secure systems. I specialize in Next.js, React, TypeScript, Node.js, Nest.js, and modern database architectures (Supabase, PostgreSQL, MongoDB, SQL Server), crafting pixel-perfect UIs with robust, high-availability backend systems.",
   email: "umairshah.developer@gmail.com",
   location: "Karachi, Pakistan",
   resumeUrl: "/cv.pdf",

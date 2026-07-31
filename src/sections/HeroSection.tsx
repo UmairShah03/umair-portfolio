@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Twitter } from "lucide-react";
 import { personalInfo, socialLinks } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
+import InteractiveRevealText from "@/components/InteractiveRevealText";
 
 const HeroSection = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -40,7 +41,7 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center">
+      <div className="relative z-10 text-center max-w-5xl mx-auto flex flex-col items-center">
         {/* Status Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,21 +62,13 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
+          className="w-full flex justify-center overflow-visible"
         >
-          <p className="text-primary font-mono text-sm md:text-base mb-3 tracking-wider font-semibold">
-            Hello, I am
-          </p>
+          <InteractiveRevealText
+            line1="Innovative Solutions"
+            line2="Develop With Umair"
+          />
         </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black mb-4 tracking-tight"
-        >
-          {personalInfo.name}
-          <span className="gradient-text">.</span>
-        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
