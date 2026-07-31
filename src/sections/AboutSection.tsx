@@ -82,7 +82,7 @@ const AboutSection = () => {
 
             <div className="space-y-4">
               {[
-                { label: "Years Experience", value: "1+" },
+                { label: "Years Experience", value: "2+" },
                 { label: "Projects Completed", value: "5+" },
                 { label: "Happy Clients", value: "3+" },
                 { label: "Open Source Contributions", value: "10+" },
