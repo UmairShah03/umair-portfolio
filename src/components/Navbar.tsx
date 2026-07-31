@@ -66,7 +66,7 @@ const Navbar = () => {
             size="sm"
             className="bg-primary/90 text-primary-foreground hover:bg-primary glow-border font-medium px-5"
           >
-            <a href="#contact">Hire Me</a>
+            <a href={`mailto:${personalInfo.email}`}>Hire Me</a>
           </Button>
         </div>
 
@@ -106,7 +106,7 @@ const Navbar = () => {
                 className="bg-primary text-primary-foreground w-full mt-2"
                 onClick={() => setMobileOpen(false)}
               >
-                <a href="#contact">Hire Me</a>
+                <a href={`mailto:${personalInfo.email}`}>Hire Me</a>
               </Button>
             </div>
           </motion.div>
