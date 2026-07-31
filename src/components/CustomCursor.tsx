@@ -8,7 +8,6 @@ const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only show custom cursor on non-touch desktop devices
     if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) return;
 
     const onMouseMove = (e: MouseEvent) => {
@@ -55,31 +54,83 @@ const CustomCursor = () => {
 
   if (!isVisible) return null;
 
+  const bracketOffset = isHovered ? 12 : 7;
+  const bracketSize = isHovered ? 6 : 4;
+
   return (
     <div className="hidden md:block pointer-events-none z-[9999]">
-      {/* Central Core Glowing Dot */}
+      {/* Precision Core Micro-Dot (4px) */}
       <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-primary rounded-full pointer-events-none shadow-[0_0_12px_hsl(var(--primary))]"
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-primary rounded-full pointer-events-none shadow-[0_0_8px_hsl(var(--primary))]"
         animate={{
-          x: mousePos.x - 5,
-          y: mousePos.y - 5,
-          scale: isClicked ? 0.5 : isHovered ? 1.6 : 1,
+          x: mousePos.x - 3,
+          y: mousePos.y - 3,
+          scale: isClicked ? 0.6 : isHovered ? 1.3 : 1,
         }}
-        transition={{ type: "spring", stiffness: 1200, damping: 50, mass: 0.1 }}
+        transition={{ type: "spring", stiffness: 1400, damping: 50, mass: 0.05 }}
       />
 
-      {/* Spring Trailing Outer Ring */}
+      {/* Sleek Corner Reticle Brackets (4 corners) */}
       <motion.div
-        className="fixed top-0 left-0 w-9 h-9 border rounded-full pointer-events-none"
+        className="fixed top-0 left-0 pointer-events-none"
         animate={{
-          x: mousePos.x - 18,
-          y: mousePos.y - 18,
-          scale: isClicked ? 0.75 : isHovered ? 1.8 : 1,
-          borderColor: isHovered ? "hsl(var(--primary))" : "hsl(var(--primary) / 0.4)",
-          backgroundColor: isHovered ? "hsl(var(--primary) / 0.12)" : "transparent",
+          x: mousePos.x,
+          y: mousePos.y,
         }}
-        transition={{ type: "spring", stiffness: 350, damping: 25 }}
-      />
+        transition={{ type: "spring", stiffness: 600, damping: 30 }}
+      >
+        {/* Top-Left Bracket */}
+        <motion.span
+          className="absolute border-t border-l border-primary/80"
+          animate={{
+            x: -bracketOffset,
+            y: -bracketOffset,
+            width: bracketSize,
+            height: bracketSize,
+            borderColor: isHovered ? "hsl(var(--primary))" : "hsl(var(--primary) / 0.5)",
+          }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        />
+
+        {/* Top-Right Bracket */}
+        <motion.span
+          className="absolute border-t border-r border-primary/80"
+          animate={{
+            x: bracketOffset - bracketSize,
+            y: -bracketOffset,
+            width: bracketSize,
+            height: bracketSize,
+            borderColor: isHovered ? "hsl(var(--primary))" : "hsl(var(--primary) / 0.5)",
+          }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        />
+
+        {/* Bottom-Left Bracket */}
+        <motion.span
+          className="absolute border-b border-l border-primary/80"
+          animate={{
+            x: -bracketOffset,
+            y: bracketOffset - bracketSize,
+            width: bracketSize,
+            height: bracketSize,
+            borderColor: isHovered ? "hsl(var(--primary))" : "hsl(var(--primary) / 0.5)",
+          }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        />
+
+        {/* Bottom-Right Bracket */}
+        <motion.span
+          className="absolute border-b border-r border-primary/80"
+          animate={{
+            x: bracketOffset - bracketSize,
+            y: bracketOffset - bracketSize,
+            width: bracketSize,
+            height: bracketSize,
+            borderColor: isHovered ? "hsl(var(--primary))" : "hsl(var(--primary) / 0.5)",
+          }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        />
+      </motion.div>
     </div>
   );
 };
