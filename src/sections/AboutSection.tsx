@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
-import { Download, MapPin, Sparkles, Code, Server, Globe } from "lucide-react";
+import { Download, MapPin, Sparkles, Code, Server, Database, ShieldCheck } from "lucide-react";
 import SectionWrapper, { SectionHeading } from "@/components/SectionWrapper";
 import { personalInfo } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 
 const AboutSection = () => {
   const highlights = [
-    { icon: Code, text: "Frontend Architecture (React, TS, Tailwind)" },
-    { icon: Server, text: "Backend APIs & Microservices (Node, Nest, Express)" },
-    { icon: Globe, text: "Scalable Full Stack Solutions" },
+    { icon: Code, text: "Frontend Architecture (React, TypeScript, Redux Toolkit, Zustand, Tailwind)" },
+    { icon: Server, text: "Backend Systems & APIs (Node.js, Nest.js, Express.js, ASP.NET Core, C#)" },
+    { icon: Database, text: "Database & Cloud Infrastructure (Supabase, PostgreSQL, SQL Server, Redis, PL/SQL)" },
+    { icon: ShieldCheck, text: "Domain Experience (Core Banking Solutions & Multi-Tenant Enterprise SaaS)" },
   ];
 
   return (

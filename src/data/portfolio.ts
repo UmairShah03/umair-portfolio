@@ -18,6 +18,8 @@ import {
   SiFirebase,
   SiVite,
   SiDotnet,
+  SiSupabase,
+  SiReactquery,
 } from "react-icons/si";
 import { TbBrandCSharp, TbSql } from "react-icons/tb";
 import { DiRedis, DiMsqlServer } from "react-icons/di";
@@ -30,8 +32,8 @@ export const LogoImage = {
 
 export const personalInfo = {
   name: "Umair Shah",
-  tagline: "Full Stack Developer | React & TypeScript Specialist",
-  bio: "I'm a passionate full-stack developer with 1+ years of experience building scalable web applications. I specialize in React, TypeScript, and Node.js, crafting pixel-perfect UIs with exceptional user experiences. Currently focused on building performant, accessible applications that make a real impact.",
+  tagline: "Full Stack Developer | React, TypeScript & .NET Specialist",
+  bio: "I am a driven Full Stack Developer with 1+ years of professional engineering experience architecting scalable web applications, banking solutions, and multi-tenant SaaS platforms. I specialize in Next.js, React, TypeScript, Node.js, Nest.js, .NET, and modern database architectures (Supabase, PostgreSQL, SQL Server), crafting pixel-perfect UIs with robust, high-availability backend systems.",
   email: "umairshah.developer@gmail.com",
   location: "Karachi, Pakistan",
   resumeUrl: "/cv.pdf",
@@ -48,8 +50,9 @@ export const techStack = [
   { name: "JavaScript", icon: SiJavascript, color: "F7DF1E", category: "Frontend" },
   { name: "TypeScript", icon: SiTypescript, color: "3178C6", category: "Frontend" },
   { name: "Next.js", icon: SiNextdotjs, color: "FFFFFF", category: "Frontend" },
+  { name: "TanStack Query", icon: SiReactquery, color: "FF4154", category: "Frontend" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "06B6D4", category: "Frontend" },
-  { name: "Redux", icon: SiRedux, color: "764ABC", category: "Frontend" },
+  { name: "Redux Toolkit", icon: SiRedux, color: "764ABC", category: "Frontend" },
   { name: "Vite", icon: SiVite, color: "646CFF", category: "Frontend" },
   { name: "Figma", icon: SiFigma, color: "F24E1E", category: "Frontend" },
 
@@ -61,6 +64,7 @@ export const techStack = [
   { name: "C#", icon: TbBrandCSharp, color: "512BD4", category: "Backend" },
   { name: "Python", icon: SiPython, color: "3776AB", category: "Backend" },
 
+  { name: "Supabase", icon: SiSupabase, color: "3FCF8E", category: "Database" },
   { name: "PostgreSQL", icon: SiPostgresql, color: "4169E1", category: "Database" },
   { name: "MongoDB", icon: SiMongodb, color: "47A248", category: "Database" },
   { name: "SQL Server", icon: DiMsqlServer, color: "CC292B", category: "Database" },
@@ -77,8 +81,8 @@ export const projects = [
   {
     title: "EduRevolution",
     description:
-      "A multi-tenant school management system enabling multiple educational institutions to securely manage operations, student records, and academics independently on a shared, scalable platform.",
-    tech: ["React", "TypeScript", "Node.js", "Nest.js", "Supabase", "Redis"],
+      "A multi-tenant school management SaaS system enabling multiple educational institutions to securely manage operations, student records, and academics independently on a shared, scalable platform.",
+    tech: ["Next.js", "TypeScript", "Nest.js", "Node.js", "Supabase", "TanStack Query", "ZSA", "Redis"],
     liveUrl: "-",
     githubUrl: "-",
     isPrivateSaaS: true,
@@ -87,8 +91,8 @@ export const projects = [
   {
     title: "Liorae-Ecommerce",
     description:
-      "A modern, full-stack eCommerce platform designed to deliver seamless online shopping experiences with secure payment integration, intuitive navigation, and scalable architecture.",
-    tech: ["React", "TypeScript", "Node.js", "Tailwind"],
+      "A modern, full-stack eCommerce platform designed to deliver seamless online shopping experiences with secure payment integration, intuitive navigation, state management with Zustand, and scalable architecture.",
+    tech: ["React", "TypeScript", "Zustand", "Node.js", "Express.js", "Tailwind CSS"],
     liveUrl: "https://liorae.vercel.app/",
     githubUrl: "https://github.com/UmairShah03/Liorae",
     image: "https://liorae.vercel.app/assets/logo-JnJqt-Cq.png",
