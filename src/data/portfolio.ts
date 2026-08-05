@@ -47,6 +47,7 @@ export const socialLinks = {
 };
 
 export const techStack = [
+  //FrontEnd
   { name: "React", icon: SiReact, color: "61DAFB", category: "Frontend" },
   { name: "JavaScript", icon: SiJavascript, color: "F7DF1E", category: "Frontend" },
   { name: "TypeScript", icon: SiTypescript, color: "3178C6", category: "Frontend" },
@@ -56,15 +57,15 @@ export const techStack = [
   { name: "Redux Toolkit", icon: SiRedux, color: "764ABC", category: "Frontend" },
   { name: "Vite", icon: SiVite, color: "646CFF", category: "Frontend" },
   { name: "Figma", icon: SiFigma, color: "F24E1E", category: "Frontend" },
-
+  //BackEnd
   { name: "Node.js", icon: SiNodedotjs, color: "5FA04E", category: "Backend" },
   { name: "Express.js", icon: SiExpress, color: "E0E0E0", category: "Backend" },
   { name: "Nest.js", icon: SiNestjs, color: "E0234E", category: "Backend" },
+  { name: "C#", icon: TbBrandCSharp, color: "512BD4", category: "Backend" },
   { name: "ASP.NET Core", icon: SiDotnet, color: "512BD4", category: "Backend" },
   { name: "ASP.NET WebForms", icon: SiDotnet, color: "5C2D91", category: "Backend" },
-  { name: "C#", icon: TbBrandCSharp, color: "512BD4", category: "Backend" },
   { name: "Python", icon: SiPython, color: "3776AB", category: "Backend" },
-
+  //Database
   { name: "Supabase", icon: SiSupabase, color: "3FCF8E", category: "Database" },
   { name: "PostgreSQL", icon: SiPostgresql, color: "4169E1", category: "Database" },
   { name: "MongoDB", icon: SiMongodb, color: "47A248", category: "Database" },
@@ -74,7 +75,7 @@ export const techStack = [
   { name: "Prisma", icon: SiPrisma, color: "5A67D8", category: "Database" },
   { name: "TypeORM", icon: TypeOrmIcon, color: "FC2D2D", category: "Database" },
   { name: "Firebase", icon: SiFirebase, color: "FFCA28", category: "Database" },
-
+   //Tools And DevOps
   { name: "Docker", icon: SiDocker, color: "2496ED", category: "Tools & DevOps" },
   { name: "Git", icon: SiGit, color: "F05032", category: "Tools & DevOps" },
 ];
