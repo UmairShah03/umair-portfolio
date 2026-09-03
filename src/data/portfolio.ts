@@ -130,6 +130,14 @@ export const experiences = [
 
 export const education = [
   {
+    degree: "Bachelor's in Computer Science",
+    institution: "Virtual University of Pakistan",
+    location: "Karachi, Pakistan",
+    period: "2026 – Present",
+    description:
+      "Focused on software engineering, full-stack development, database management, and software architecture.",
+  },
+  {
     degree: "Diploma in Software Engineering",
     institution: "Aligarh Institute of Technology",
     location: "Karachi, Pakistan",
