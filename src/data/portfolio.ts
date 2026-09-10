@@ -113,7 +113,7 @@ export const projects = [
 
 export const experiences = [
   {
-    role: "Junior Software Developer",
+    role: "Software Developer",
     company: "Computer Research Pvt. Ltd",
     period: "2025 – Present",
     description:
